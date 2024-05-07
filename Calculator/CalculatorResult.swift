@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct CalculatorResult: View {
+    @Binding var value: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Spacer()
+            Text(value)
+                .fixedSize()
+                .lineLimit(1)
+                .bold()
+                .font(.system(size: 96))
+                .foregroundStyle(.white)
+        }.padding(.horizontal)
     }
 }
 
 #Preview {
-    CalculatorResult()
+    CalculatorResult(value: .constant("1"))
 }

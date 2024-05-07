@@ -8,11 +8,46 @@
 import SwiftUI
 
 struct CalculatorButton: View {
+    let item: CalculatorButtonType
+    @Binding var value: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {self.onTap(item)}, label: {
+            Text(item.rawValue)
+                .font(.title)
+                .frame(width: self.buttonWidth(), height: 90)
+                .background(item.color, in: RoundedRectangle(cornerRadius: 32))
+                .foregroundStyle(.white)
+        })
+    }
+    func buttonWidth( ) -> CGFloat {
+        if self.item == .zero {
+            return ((UIScreen.main.bounds.width - (4 * 12)) / 4) * 2
+        }
+        return (UIScreen.main.bounds.width - (5 * 12)) / 4
+    }
+    func onTap(_ button: CalculatorButtonType) {
+        switch button {
+        case .increment, .subtract, .divide, .mutliply, .equal:
+            break
+        case .clear:
+            self.value = "0"
+            break
+        case .decimal, .negative, .percent:
+            break
+        default:
+            let number = button.rawValue
+            if self.value == "0" {
+                value = button.rawValue
+            } else {
+                self.value = "\(self.value)\(number)"
+            }
+            break
+        }
     }
 }
 
+
 #Preview {
-    CalculatorButton()
+    CalculatorButton(item: .zero, value: .constant("1"))
 }

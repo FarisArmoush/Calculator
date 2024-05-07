@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct CalculatorButtonsGrid: View {
+    @Binding var value: String
+    private let buttons: [[CalculatorButtonType]] = [
+        [.clear, .negative, .percent, .divide],
+        [.seven, .eight, .nine, .mutliply],
+        [.four, .five, .six, .subtract],
+        [.one, .two, .three, .increment],
+        [.zero, .decimal, .equal]
+    ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ForEach(buttons, id: \.self) { row in
+            HStack {
+                ForEach(row, id: \.self) { item in
+                    CalculatorButton(item: item, value: $value)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    CalculatorButtonsGrid()
+    CalculatorButtonsGrid(value: .constant("1"))
 }
