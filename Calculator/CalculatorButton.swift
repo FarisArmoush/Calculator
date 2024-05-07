@@ -27,22 +27,25 @@ struct CalculatorButton: View {
         return (UIScreen.main.bounds.width - (5 * 12)) / 4
     }
     func onTap(_ button: CalculatorButtonType) {
-        switch button {
-        case .increment, .subtract, .divide, .mutliply, .equal:
-            break
-        case .clear:
-            self.value = "0"
-            break
-        case .decimal, .negative, .percent:
-            break
-        default:
-            let number = button.rawValue
-            if self.value == "0" {
-                value = button.rawValue
-            } else {
-                self.value = "\(self.value)\(number)"
+        if self.value.count < 8
+        {
+            switch button {
+            case .increment, .subtract, .divide, .mutliply, .equal:
+                break
+            case .clear:
+                self.value = "0"
+                break
+            case .decimal, .negative, .percent:
+                break
+            default:
+                let number = button.rawValue
+                if self.value == "0" {
+                    value = button.rawValue
+                } else {
+                    self.value = "\(self.value)\(number)"
+                }
+                break
             }
-            break
         }
     }
 }
