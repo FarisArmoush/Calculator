@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalculatorResult: View {
     @Binding var value: String
-
+    
     var body: some View {
         HStack {
             Spacer()
@@ -18,7 +18,6 @@ struct CalculatorResult: View {
                 .bold()
                 .font(adaptiveFont)
                 .foregroundStyle(.white)
-                
         }.padding(.horizontal)
     }
     private var adaptiveFont: Font {
