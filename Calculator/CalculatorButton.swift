@@ -16,36 +16,39 @@ struct CalculatorButton: View {
             Text(item.rawValue)
                 .font(.title)
                 .frame(width: self.buttonWidth(), height: 90)
-                .background(item.color, in: RoundedRectangle(cornerRadius: 32))
+                .background(item.color, in: RoundedRectangle(cornerRadius: 16))
                 .foregroundStyle(.white)
         })
     }
-    func buttonWidth( ) -> CGFloat {
+    private func buttonWidth( ) -> CGFloat {
         if self.item == .zero {
             return ((UIScreen.main.bounds.width - (4 * 12)) / 4) * 2
         }
         return (UIScreen.main.bounds.width - (5 * 12)) / 4
     }
-    func onTap(_ button: CalculatorButtonType) {
-        if self.value.count < 8
-        {
-            switch button {
-            case .increment, .subtract, .divide, .mutliply, .equal:
-                break
-            case .clear:
-                self.value = "0"
-                break
-            case .decimal, .negative, .percent:
-                break
-            default:
+    private func onTap(_ button: CalculatorButtonType) {
+        switch button {
+        case .increment, .subtract, .divide, .mutliply, .equal:
+            break
+
+        case .clear:
+            self.value = "0"
+            break
+
+        case .decimal, .negative, .percent:
+            break
+
+        default:
+            let canAddNumber: Bool = self.value.count < 9
+            if canAddNumber {
                 let number = button.rawValue
                 if self.value == "0" {
                     value = button.rawValue
                 } else {
                     self.value = "\(self.value)\(number)"
                 }
-                break
             }
+            break
         }
     }
 }

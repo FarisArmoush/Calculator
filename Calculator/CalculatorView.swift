@@ -12,7 +12,7 @@ struct CalculatorView: View {
     
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Color.black.opacity(0.925).ignoresSafeArea()
             VStack {
                 Spacer()
                 CalculatorResult(value: $value)
