@@ -17,12 +17,14 @@ struct ContentView: View {
         [.one, .two, .three, .increment],
         [.zero, .decimal, .equal]
     ]
-
+    
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
             VStack {
                 Spacer()
+                
+                
                 HStack {
                     Spacer()
                     Text(value)
@@ -32,7 +34,6 @@ struct ContentView: View {
                         .font(.system(size: 96))
                         .foregroundStyle(.white)
                 }.padding(.horizontal)
-                Spacer()
                 ForEach(buttons, id: \.self) { row in
                     HStack {
                         ForEach(row, id: \.self) { item in
@@ -42,12 +43,12 @@ struct ContentView: View {
                                     .frame(width: self.buttonWidth(item), height: 90)
                                     .background(item.buttonColor, in: RoundedRectangle(cornerRadius: 32))
                                     .foregroundStyle(.white)
-                                    
+                                
                             })
                         }
                     }
                 }
-            }
+            }.fixedSize(horizontal: false, vertical: false)
         }
     }
     private func onTapGesture(_ button: CalculatorButtonType) {
@@ -69,13 +70,13 @@ struct ContentView: View {
             break
         }
     }
-         func buttonWidth(_ type: CalculatorButtonType ) -> CGFloat {
-            if type == .zero {
-                return ((UIScreen.main.bounds.width - (4 * 12)) / 4) * 2
-            }
-            return (UIScreen.main.bounds.width - (5 * 12)) / 4
+    func buttonWidth(_ type: CalculatorButtonType ) -> CGFloat {
+        if type == .zero {
+            return ((UIScreen.main.bounds.width - (4 * 12)) / 4) * 2
         }
-
+        return (UIScreen.main.bounds.width - (5 * 12)) / 4
+    }
+    
 }
 
 #Preview {
