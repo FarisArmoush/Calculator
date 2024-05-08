@@ -33,11 +33,19 @@ extension CalculatorButtonType {
     var color: Color {
         switch self {
         case .divide, .mutliply, .subtract, .increment, .equal:
-            return Color.orange
+            return .orange
         case .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .zero, .decimal:
             return .gray.opacity(0.3)
         case .clear, .negative, .percent:
             return .white.opacity(0.6)
         }
     }
+}
+
+enum CalculatorOperation: String {
+    case none
+    case increment
+    case subtract
+    case mutliply
+    case divide
 }
