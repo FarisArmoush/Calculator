@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CalculatorResult: View {
-    @Binding var value: String
-    
+    @ObservedObject var viewModel: CalculatorViewModel
+
     var body: some View {
         HStack {
             Spacer()
-            Text(value)
+            Text($viewModel.value.wrappedValue)
                 .lineLimit(1)
                 .bold()
                 .font(adaptiveFont)
@@ -23,11 +23,11 @@ struct CalculatorResult: View {
     private var adaptiveFont: Font {
         let baseFontSize: CGFloat = 90
         let maxLength: Int = 10 // Adjust based on typical use
-        let scaleFactor: CGFloat = max(1, CGFloat(value.count) / (CGFloat(maxLength) / 1.75))
+        let scaleFactor: CGFloat = max(1, CGFloat($viewModel.value.wrappedValue.count) / (CGFloat(maxLength) / 1.75))
         return .system(size: baseFontSize / scaleFactor)
     }
 }
 
 #Preview {
-    CalculatorResult(value: .constant("1"))
+    CalculatorResult(viewModel: CalculatorViewModel())
 }

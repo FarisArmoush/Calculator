@@ -9,10 +9,10 @@ import SwiftUI
 
 struct CalculatorButton: View {
     let item: CalculatorButtonType
-    @Binding var value: String
+    let viewModel: CalculatorViewModel
     
     var body: some View {
-        Button(action: {self.onTap(item)}, label: {
+        Button(action: {self.viewModel.onTap(item)}, label: {
             Text(item.rawValue)
                 .font(.title)
                 .frame(width: self.buttonWidth(), height: 90)
@@ -26,35 +26,9 @@ struct CalculatorButton: View {
         }
         return (UIScreen.main.bounds.width - (5 * 12)) / 4
     }
-    
-    private func onTap(_ button: CalculatorButtonType) {
-        switch button {
-        case .increment, .subtract, .divide, .mutliply, .equal:
-            break
-            
-        case .clear:
-            self.value = "0"
-            break
-            
-        case .decimal, .negative, .percent:
-            break
-            
-        default:
-            let canAddNumber: Bool = self.value.count < 9
-            if canAddNumber {
-                let number = button.rawValue
-                if self.value == "0" {
-                    value = button.rawValue
-                } else {
-                    self.value = "\(self.value)\(number)"
-                }
-            }
-            break
-        }
-    }
 }
 
 
 #Preview {
-    CalculatorButton(item: .zero, value: .constant("1"))
+    CalculatorButton(item: .zero, viewModel: CalculatorViewModel())
 }

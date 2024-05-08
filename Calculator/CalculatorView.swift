@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct CalculatorView: View {
-    @State var value: String = "0"
     
+    @ObservedObject var viewModel = CalculatorViewModel()
     var body: some View {
         ZStack {
             Color.black.opacity(0.925).ignoresSafeArea()
             VStack {
                 Spacer()
-                CalculatorResult(value: $value)
-                CalculatorButtonsGrid(value: $value)
+                CalculatorResult(viewModel: viewModel)
+                CalculatorButtonsGrid(viewModel: viewModel)
             }
         }
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalculatorButtonsGrid: View {
-    @Binding var value: String
+    @ObservedObject var viewModel: CalculatorViewModel
     private let buttons: [[CalculatorButtonType]] = [
         [.clear, .negative, .percent, .divide],
         [.seven, .eight, .nine, .mutliply],
@@ -21,7 +21,7 @@ struct CalculatorButtonsGrid: View {
         ForEach(buttons, id: \.self) { row in
             HStack {
                 ForEach(row, id: \.self) { item in
-                    CalculatorButton(item: item, value: $value)
+                    CalculatorButton(item: item, viewModel: viewModel)
                 }
             }
         }
@@ -29,5 +29,5 @@ struct CalculatorButtonsGrid: View {
 }
 
 #Preview {
-    CalculatorButtonsGrid(value: .constant("1"))
+    CalculatorButtonsGrid(viewModel: CalculatorViewModel())
 }
