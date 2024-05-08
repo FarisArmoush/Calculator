@@ -25,8 +25,8 @@ final class CalculatorViewModel: ObservableObject {
             self.currentOperation = .divide
             self.runningNumber = Int(self.value) ?? 0
         }
-        else if type == .mutliply {
-            self.currentOperation = .mutliply
+        else if type == .multiply {
+            self.currentOperation = .multiply
             self.runningNumber = Int(self.value) ?? 0
         }
         else if type == .equal {
@@ -37,7 +37,7 @@ final class CalculatorViewModel: ObservableObject {
                 self.value = "\(runningValue + currentValue)"
             case .subtract:
                 self.value = "\(runningValue - currentValue)"
-            case .mutliply:
+            case .multiply:
                 self.value = "\(runningValue * currentValue)"
             case .divide:
                 if(currentValue == 0 || runningValue == 0) { return }
@@ -67,7 +67,7 @@ final class CalculatorViewModel: ObservableObject {
     
     func onTap(_ type: CalculatorButtonType) {
         switch type {
-        case .increment, .subtract, .divide, .mutliply, .equal:
+        case .increment, .subtract, .divide, .multiply, .equal:
             onOperation(type)
             break
             

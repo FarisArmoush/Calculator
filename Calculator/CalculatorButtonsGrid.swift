@@ -11,7 +11,7 @@ struct CalculatorButtonsGrid: View {
     @ObservedObject var viewModel: CalculatorViewModel
     private let buttons: [[CalculatorButtonType]] = [
         [.clear, .negative, .percent, .divide],
-        [.seven, .eight, .nine, .mutliply],
+        [.seven, .eight, .nine, .multiply],
         [.four, .five, .six, .subtract],
         [.one, .two, .three, .increment],
         [.zero, .decimal, .equal]

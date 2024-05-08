@@ -20,7 +20,7 @@ enum CalculatorButtonType: String {
     case zero = "0"
     case increment = "+"
     case subtract = "-"
-    case mutliply = "x"
+    case multiply = "x"
     case divide = "/"
     case equal = "="
     case clear = "AC"
@@ -32,7 +32,7 @@ enum CalculatorButtonType: String {
 extension CalculatorButtonType {
     var color: Color {
         switch self {
-        case .divide, .mutliply, .subtract, .increment, .equal:
+        case .divide, .multiply, .subtract, .increment, .equal:
             return .orange
         case .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .zero, .decimal:
             return .gray.opacity(0.3)
@@ -46,6 +46,6 @@ enum CalculatorOperation: String {
     case none
     case increment
     case subtract
-    case mutliply
+    case multiply
     case divide
 }
